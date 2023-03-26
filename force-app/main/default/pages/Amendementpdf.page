@@ -1,0 +1,306 @@
+<apex:page standardController="Amendment__c" showHeader="false" standardStylesheets="false" renderAs="pdf" extensions="ImageController2,PurchaseContractControllerExtension" >
+
+    <div>
+     <table style="font-family:sans-serif; padding-bottom:30px;">
+<tr>
+    <td><apex:image id="CMS_logo" value="{!$Resource.CMS_logo}" width="120" height="60"/></td>
+    <td style="font:12pt;  padding-right:200px;"><br/>One Algorithm Pvt Ltd<br/><br/></td>
+    <td style="font:12pt;">DATE: &nbsp; <apex:outputText value="{!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}"></apex:outputText><br/>PLACE:</td>
+</tr>
+</table>
+    <div style="font-family:san-serif; text-align:center; font-size:18pt"><b><u> PURCHASE CONTRACT AMENDEMENT AGREEMENT </u></b> </div>
+    <table style="border:0.5px solid #fff; font-family:sans-serif;">
+<tr>
+
+    <th> <u><b> PARTIES </b></u></th>
+</tr>
+</table>
+<br/>
+<p1 style="padding:5px; align=justify; font-size:12pt;"> 
+    &nbsp;&nbsp;This <b> <apex:outputField value="{!Amendment__c.Name}"/> </b>, Purchase contract  Amendment Agreement (hereinafter referred to as the “amendment Agreement”) is entered into on
+        <b> <apex:outputText value=" DAY - {!Amendment__c.Amendment_Approval_Date__c}"/> </b> (the “Approval Date”), by and between 
+    <b>One Algorithm Pvt Ltd</b>, with an address of Hyderabad, Telangana - 500052  (hereinafter referred to as the “Client”), and &nbsp;         
+       Amendement Type: <b> <apex:outputText value=" {!Amendment__c.Amendment_Type__c}"/></b>,
+       Purchase Contract Name: <b> <apex:outputText value=" {!Amendment__c.Purchase_Contract__r.Name}"/></b>,
+        Total AMount before update: <b> <apex:outputText value=" {!Amendment__c.Purchase_Contract_Final_Amount__c}"/></b>,
+        Present Total Amount: <b> <apex:outputText value=" {!Amendment__c.Amendment_FInal_Amount__c}"/></b>,
+        Difference Amount: <b> <apex:outputText value=" {!Amendment__c.Difference_Amount__c}"/></b>,</p1>
+    
+        <p2 style="padding:5px; text-align:left;font-size:12pt;">
+NOW, THEREFORE, the parties hereby agree as follows:<br/><br/>
+</p2>
+        <p3 style="padding:20px; align=justify; font-size:12pt;">
+    1. During the period of this Amendement Agreement, the Service Provider shall have the responsibility to perform and provide the following services/Products (hereinafter referred to as “Services or Products”) to the Client:<br/><br/>
+</p3>
+<br/>
+        <table text-align="center;" border-collapse ="collapse" border=" 1px solid black;" width="100%">
+<tr style="colour:#fff; background-colour:#ff4500;">
+    <th style="padding-left:15px; padding-right:20px;"> S.No </th>
+    <th style="padding-left:25px; padding-right:150px;"> Product Name </th>
+    <th style="text-align:left; padding-right:10px "> Quantity (Units) </th>
+    <th style="text-align:left; padding-right:10px "> Unit Price </th>
+    <th style="text-align:left; padding-right:10px "> Total Amount </th>   
+</tr>
+
+
+<tr>
+    <apex:variable var="rowNo" value="{!0}"/>
+    <th>
+        <apex:repeat value="{!contractMaterials}" var="Conmaterial" >
+              
+              <apex:variable var="rowNo" value="{!rowNo+1}"/>
+            <tr>
+               <td>
+                    {!rowNo}
+               </td>
+               <td>
+                   {!Conmaterial.Name}
+               </td>
+               <td>
+                    {!Conmaterial.Quantiy__c} in {!Conmaterial.Unit_Of_Measurement__c}
+               </td>
+               <td>
+                    {!Conmaterial.Unit_Price__c}
+               </td>
+               <td>
+                    {!Conmaterial.Total_Price__c}
+               </td>
+            </tr>
+        </apex:repeat> 
+    </th>
+            </tr>
+        </table>
+<table>
+    <table>
+    <tr>
+        <th style="text-align:right; padding-left:420px "> Grand Total Amount  = &nbsp; </th>
+           <td >
+                <apex:outputText value="{!Amendment__c.Amendment_FInal_Amount__c}"/>
+           </td>
+     </tr>
+</table>
+        
+        
+        <br/><th> <br/><br/><u><b> TERMS AND CONDITIONS </b></u></th>
+    
+    <ol>
+        <li><u><b>Effective Date</b></u>
+            <p align="justify"> &nbsp; The date on which the amendment will become effective. </p></li> 
+        
+        <li><u><b>Parties Involved</b></u>
+            <p align="justify"> &nbsp; The identification of the parties to the original agreement and the amendment.
+          </p></li> 
+        
+        <li><u><b>Changes Made</b></u>
+            <p align="justify"> &nbsp; A description of the changes being made to the original agreement, including any additions, deletions, or modifications.</p></li> 
+       
+        <li><u><b>Obligations and Responsibilities</b></u>
+            <p align="justify"> &nbsp; A description of the obligations and responsibilities of the parties under the amended agreement.
+            </p></li> 
+         <li><u><b>Execution</b></u>
+            <p align="justify"> &nbsp; Provisions addressing how the amendment will be executed, including the requirement for signatures of the parties and any necessary filings.
+</p></li> 
+        
+        <li><u><b>Dispute Resolution</b></u>
+            <p align="justify"> &nbsp; Provisions addressing how disputes arising from the amendment will be resolved, such as through arbitration or litigation.
+</p></li> 
+        
+        <li><u><b>Governing Law</b></u>
+            <p align="justify"> &nbsp; The law that will govern the amendment, including any choice of law provisions.
+</p></li>
+        
+        <li><u><b>Integration</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the amendment supersedes all prior negotiations, understandings, and agreements between the parties.
+</p></li>
+        
+        <li><u><b>Entire Agreement</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the amendment constitutes the entire agreement between the parties and supersedes all prior and contemporaneous agreements, understandings, and negotiations.
+</p></li>
+        
+        <li><u><b>Amendment of Original Agreement</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the original agreement is amended only to the extent set forth in the amendment agreement.
+</p></li>
+
+        
+    </ol>
+        <div align="justify"><apex:outputPanel rendered="{!Amendment__c.Signature__c  == True }">
+    <apex:image id="stamp" value="{!$Resource.stamp}" width="80" height="80"/>
+    <br/>
+        <table text-align="center;" border-collapse ="collapse"  width="100%">
+     <tr>
+     
+     <td style="padding-left:15px "><apex:image width="80" height="50"  url="/sfc/servlet.shepherd/document/download/069DC000001HxZmYAK" /></td>
+     
+     
+     <td style="text-align:right; padding-right:10px "><apex:image url="{!imageURL}" width="100px" height="80px" /></td>
+     </tr>
+     </table></apex:outputPanel>
+     
+     <table text-align="center;" border-collapse ="collapse"  width="100%">
+    
+     <tr>
+     
+     <td style="padding-left:15px ">CEO Signature</td>
+     
+     
+     <td style="text-align:right; padding-right:10px ">Vendor Signature</td>
+     </tr>
+     </table>
+        
+     
+             
+       </div>
+    
+        
+        
+        <!--  - {!Purchase_Contracts__c.Parent_Purchase_Contract__c}" -->
+    <!--
+    <p1 style="padding:5px; align=justify; font-size:12pt;"> 
+&nbsp;&nbsp;This <b> <apex:outputField value="{!Purchase_Contracts__c.Name}"/> </b>, Purchase contract Renewal Agreement (hereinafter referred to as the “Renewal Agreement”) for the Purchase Contract named <b> <apex:outputText value="{!Purchase_Contracts__c.Parent_Purchase_Contract__r.Name}"/> </b>  is 
+entered into on <b> <apex:outputText value=" DAY - {!Purchase_Contracts__c.Execution_Date__c}"/> </b> (the “Effective Date”), by and between
+<b>One Algorithm Pvt Ltd</b>, with an address of Hyderabad, Telangana - 500052  (hereinafter referred to as the “Client”), and &nbsp;<b> <apex:outputField value="{!Purchase_Contracts__c.Vendor_Name__c}"/> </b>, 
+with an address of <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingStreet}"/>, <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingState}"/>, <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingCountry}"/>, 
+<apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingPostalCode }"/> (hereinafter referred to as the “Supplier/Vendor”), (collectively referred to as the “Parties”).
+</p1>
+<br/>
+    <br/>
+<p2 style="padding:5px; text-align:left;font-size:12pt;">
+NOW, THEREFORE, the parties hereby agree as follows:<br/><br/>
+</p2>
+<p3 style="padding:20px; align=justify; font-size:12pt;">
+    1. During the period of this Renewal Agreement, the Service Provider shall have the responsibility to perform and provide the following services/Products (hereinafter referred to as “Services or Products”) to the Client:<br/><br/>
+</p3>
+<br/>
+
+<table text-align="center;" border-collapse ="collapse" border=" 1px solid black;" width="100%">
+<tr style="colour:#fff; background-colour:#ff4500;">
+    <th style="padding-left:15px; padding-right:20px;"> S.No </th>
+    <th style="padding-left:25px; padding-right:150px;"> Product Name </th>
+    <th style="text-align:left; padding-right:10px "> Quantity (Units) </th>
+    <th style="text-align:left; padding-right:10px "> Unit Price </th>
+    <th style="text-align:left; padding-right:10px "> Total Amount </th>   
+</tr>
+<tr>
+    <apex:variable var="rowNo" value="{!0}"/>
+    <th>
+        <apex:repeat value="{!Purchase_Contracts__c.Contract_materials__r}" var="Conmaterial" >
+              
+              <apex:variable var="rowNo" value="{!rowNo+1}"/>
+            <tr>
+               <td>
+                    {!rowNo}
+               </td>
+               <td>
+                   {!Conmaterial.Name}
+               </td>
+               <td>
+                    {!Conmaterial.Quantiy__c} in {!Conmaterial.Unit_Of_Measurement__c}
+               </td>
+               <td>
+                    {!Conmaterial.Unit_Price__c}
+               </td>
+               <td>
+                    {!Conmaterial.Total_Price__c}
+               </td>
+            </tr>
+            </apex:repeat> 
+    </th>
+</tr>
+</table> 
+    <table>
+    <tr>
+        <th style="text-align:right; padding-left:420px "> Grand Total Amount  = &nbsp; </th>
+           <td >
+                <apex:outputText value="{!Purchase_Contracts__c.Total_Amount__c}"/>
+           </td>
+     </tr>
+</table>
+
+    </div><br/><br/><br/><br/><br/> 
+    <br/><th> <br/><br/><u><b> TERMS AND CONDITIONS </b></u></th>
+    
+    <ol>
+        <li><u><b>Effective Date</b></u>
+            <p align="justify"> &nbsp; The date on which the amendment will become effective. <b> <apex:outputField value="{!Purchase_Contracts__c.Contract_Term__c}"/> </b> years.</p></li> 
+        
+        <li><u><b>Parties Involved</b></u>
+            <p align="justify"> &nbsp; The identification of the parties to the original agreement and the amendment.
+          </p></li> 
+        
+        <li><u><b>Changes Made</b></u>
+            <p align="justify"> &nbsp; A description of the changes being made to the original agreement, including any additions, deletions, or modifications.</p></li> 
+       
+        <li><u><b>Obligations and Responsibilities</b></u>
+            <p align="justify"> &nbsp; A description of the obligations and responsibilities of the parties under the amended agreement.
+            </p></li> 
+         <li><u><b>Execution</b></u>
+            <p align="justify"> &nbsp; Provisions addressing how the amendment will be executed, including the requirement for signatures of the parties and any necessary filings.
+</p></li> 
+        
+        <li><u><b>Dispute Resolution</b></u>
+            <p align="justify"> &nbsp; Provisions addressing how disputes arising from the amendment will be resolved, such as through arbitration or litigation.
+</p></li> 
+        
+        <li><u><b>Governing Law</b></u>
+            <p align="justify"> &nbsp; The law that will govern the amendment, including any choice of law provisions.
+</p></li>
+        
+        <li><u><b>Integration</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the amendment supersedes all prior negotiations, understandings, and agreements between the parties.
+</p></li>
+        
+        <li><u><b>Entire Agreement</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the amendment constitutes the entire agreement between the parties and supersedes all prior and contemporaneous agreements, understandings, and negotiations.
+</p></li>
+        
+        <li><u><b>Amendment of Original Agreement</b></u>
+            <p align="justify"> &nbsp; A statement indicating that the original agreement is amended only to the extent set forth in the amendment agreement.
+</p></li>
+
+        
+    </ol>
+    
+    <div align="justify"><apex:outputPanel rendered="{!Purchase_Contracts__c.Signature__c  == True }">
+    <apex:image id="stamp" value="{!$Resource.stamp}" width="80" height="80"/>
+    <br/>
+  
+   <p2 align="justify">
+   <apex:image width="80" height="50"  url="/sfc/servlet.shepherd/document/download/069DC000001HxZmYAK" /></p2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p1 align="justify">CEO Signature </p1>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+         <apex:repeat value="{!imageURL}"  var="ConList">
+    
+               <p2 style="text-align:right"> <apex:image url="{!imageURL}" width="100px" height="80px" />  </p2>
+                             
+         </apex:repeat>
+            <p2 align="justify">Vendor Signature </p2>   
+        <apex:outputPanel rendered="{!Purchase_Contracts__c.Signature__c  == True }"> 
+           
+     <table text-align="center;" border-collapse ="collapse"  width="100%">
+     <tr>
+     
+     <td style="padding-left:15px "><apex:image width="80" height="50"  url="/sfc/servlet.shepherd/document/download/069DC000001HxZmYAK" /></td>
+     
+     
+     <td style="text-align:right; padding-right:10px "><apex:image url="{!imageURL}" width="100px" height="80px" /></td>
+     </tr>
+     </table></apex:outputPanel>
+     
+     <table text-align="center;" border-collapse ="collapse"  width="100%">
+    
+     <tr>
+     
+     <td style="padding-left:15px ">CEO Signature</td>
+     
+     
+     <td style="text-align:right; padding-right:10px ">Vendor Signature</td>
+     </tr>
+     </table> -->
+        
+        </table>
+             
+       </div>
+    
+</apex:page>

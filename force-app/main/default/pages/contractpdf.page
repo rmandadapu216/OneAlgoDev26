@@ -1,0 +1,273 @@
+<apex:page standardController="Purchase_Contracts__c" showHeader="false" standardStylesheets="false" renderAs="pdf" extensions="ImageController" >
+
+    <div>
+        <!-- style= "background:url('{!$Resource.DraftWatermark}') no-repeat center center; height:800px; font-family: Arial, Helvetica, sans-serif;" -->
+         
+<table style="font-family:sans-serif; padding-bottom:30px;">
+<tr>
+    <td><apex:image id="CMS_logo" value="{!$Resource.CMS_logo}" width="120" height="60"/></td>
+    <td style="font:12pt;  padding-right:200px;"><br/>One Algorithm Pvt Ltd<br/><br/></td>
+    <td style="font:12pt;">DATE: &nbsp; <apex:outputText value="{!DAY(TODAY())}-{!MONTH(TODAY())}-{!YEAR(TODAY())}"></apex:outputText><br/>PLACE:</td>
+</tr>
+</table>
+<div style="font-family:san-serif; text-align:center; font-size:18pt"><b><u> PURCHASE CONTRACT AGREEMENT </u></b> </div>
+
+<table style="border:0.5px solid #fff; font-family:sans-serif;">
+<tr>
+
+    <th> <u><b> PARTIES </b></u></th>
+</tr>
+</table>
+<br/>
+
+<p1 style="padding:5px; align=justify; font-size:12pt;"> 
+&nbsp;&nbsp;This <b> <apex:outputField value="{!Purchase_Contracts__c.Name}"/> </b>, Purchase contract Agreement (hereinafter referred to as the “Agreement”) is 
+entered into on <b> <apex:outputText value=" DAY - {!Purchase_Contracts__c.Execution_Date__c}"/> </b> (the “Effective Date”), by and between
+<b>One Algorithm Pvt Ltd</b>, with an address of Hyderabad, Telangana - 500052  (hereinafter referred to as the “Client”), and &nbsp;<b> <apex:outputField value="{!Purchase_Contracts__c.Vendor_Name__c}"/> </b>, 
+with an address of <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingStreet}"/>, <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingState}"/>, <apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingCountry}"/>, 
+<apex:outputField value="{!Purchase_Contracts__c.Vendor_name__r.BillingPostalCode }"/> (hereinafter referred to as the “Supplier/Vendor”), (collectively referred to as the “Parties”).
+</p1>
+<br/>
+<br/>
+<p2 style="padding:5px; text-align:left;font-size:12pt;">
+NOW, THEREFORE, the parties hereby agree as follows:<br/><br/>
+</p2>
+<p3 style="padding:20px; align=justify; font-size:12pt;">
+    1. During the period of this Agreement, the Service Provider shall have the responsibility to perform and provide the following services/Products (hereinafter referred to as “Services or Products”) to the Client:<br/><br/>
+</p3>
+<br/>
+
+<table text-align="center;" border-collapse ="collapse" border=" 1px solid black;" width="100%">
+
+<tr style="colour:#fff; background-colour:#ff4500;">
+    <th style="padding-left:15px; padding-right:20px;"> S.No </th>
+    <th style="padding-left:25px; padding-right:150px;"> Product Name </th>
+    <th style="text-align:left; padding-right:10px "> Quantity (Units) </th>
+    <th style="text-align:left; padding-right:10px "> Unit Price </th>
+    <th style="text-align:left; padding-right:10px "> Total Amount </th>   
+</tr>
+<tr>
+    <apex:variable var="rowNo" value="{!0}"/>
+    <th>
+        <apex:repeat value="{!Purchase_Contracts__c.Contract_materials__r}" var="Conmaterial" >
+              
+              <apex:variable var="rowNo" value="{!rowNo+1}"/>
+            <tr>
+               <td>
+                    {!rowNo}
+               </td>
+               <td>
+                   {!Conmaterial.Name}
+               </td>
+               <td>
+                    {!Conmaterial.Quantiy__c} in {!Conmaterial.Unit_Of_Measurement__c}
+               </td>
+               <td>
+                    {!Conmaterial.Unit_Price__c}
+               </td>
+               <td>
+                    {!Conmaterial.Total_Price__c}
+               </td>
+            </tr>
+        </apex:repeat> 
+    </th>
+</tr>
+</table>
+<table>
+    <tr>
+        <th style="text-align:right; padding-left:420px "> Grand Total Amount  = &nbsp; </th>
+           <td >
+                <apex:outputText value="{!Purchase_Contracts__c.Final_Amount__c}"/>
+           </td>
+     </tr>
+</table>
+
+    </div><br/><br/><br/><br/><br/>
+
+<!--<apex:image url="{!$Action.Attachment.Download}" width="120" height="60"></apex:image>-->
+    <br/><th> <br/><br/><u><b> TERMS AND CONDITIONS </b></u></th>
+    
+    
+    <ul>
+        <apex:outputPanel rendered="{!Purchase_Contracts__c.Contract_type__c  == 'Non Software' }">
+    
+        <li><u><b>Services</b></u>
+            <p align="justify"> &nbsp; Consultant agrees to perform the following services/Products in a
+timely, expeditious and professional manner: Consulting Services in accordance with all
+                applicable provisions of the Consultant’s Proposal dated <b><apex:outputText value=" DAY - {!Purchase_Contracts__c.Execution_Date__c}"/></b>b, which is attached hereto as
+Exhibit and incorporated herein by this reference. In the event of any conflicts between the
+Agreement and any of the terms of the attached exhibits, the terms of this Agreement shall
+                prevail.</p>
+            <p align="justify"> &nbsp; Consultant represents and acknowledges that the Products/Services performed under this Agreement
+will be done using Consultant's own equipment at Consultant's own home or place of business, and
+at hours and times as determined by Consultant. Consultant is engaged in providing these types of
+services for persons or entities other than the Company, and the Consultant is not required to provide
+services exclusively to the Company during the term of this Agreement</p></li>
+        <li><u><b>Compensation</b></u>
+            <p align="justify"> &nbsp; For satisfactory performance of the Services hereunder, Company shall pay
+                Consultant for the performance of the services detailed in this Agreement, <b>$<apex:outputText value="{!Purchase_Contracts__c.Total_Amount__c}"/></b>. Payment
+will not be made on a salary or hourly rate. Company shall have no obligation to make any payments
+until such time as Compnay accepts Consultant’s performance as satisfactory. All payments under
+this contract shall be to the trade or business name of the Consultant. No payments will be
+personally made to an individual under this contract.</p></li>
+        
+        <li><u><b>Term</b></u>
+            <p align="justify"> &nbsp; The term of this Agreement for <b><apex:outputField value="{!Purchase_Contracts__c.Contract_Term__c}"/></b> year/years.
+The Agreement may be terminated earlier by final completion of the Services by the Consultant and
+acceptance of the services by the Company or through the termination provisions provided herein.
+</p></li>
+             <li><u><b>Termination</b></u>
+            <p align="justify"> &nbsp; Consultant may terminate this Agreement at any time by giving the
+Company written notice of not less than sixty (60) days. Company may terminate this Agreement at
+any time in the event that Consultant violates the terms of this Agreement or fails to produce a
+result that meets the specifications of this Agreement. In the event of termination, payments will
+be made to Consultant for all work performed up to the date of termination.</p></li>
+        
+        <li><u><b>Amendments</b></u>
+            <p align="justify"> &nbsp; Company may order changes in the work and services detailed
+in this Agreement, consisting of additions, deletions, or modifications. All changes shall be
+authorized by a written Change Order designating the work to be added, changed, or deleted, the
+increase or decrease in costs, and any change in time for completion of the project. Consultant and
+Company, or their duly authorized agents, shall sign the Change Order.</p>
+            <p>Unless otherwise agreed, the cost of changes to the Company for a change in work shall be
+determined by mutual agreement and paid according to the terms hereunder or by the terms of the
+Change Order. However, Company shall have the authority to order minor changes in the work not
+involving an adjustment in the contract sum or an extension of the contract time, and not
+inconsistent with the intent of the contract documents</p></li>
+        
+        <li><u><b>Renewal</b></u>
+            <p align="justify"></p> &nbsp; According to the agreement of both the parties, grace period of <b>14 days (2 weeks)</b> being given to the Contractor to Renew the current Contract. Otherwise it will go for Expiration</li>
+        
+<li><u><b>Work Quality</b></u>
+            <p align="justify"> &nbsp; The Consultant warrants to the Company that all services provided
+will be of good quality, in conformance with the highest standards of the profession and in
+conformance with this Agreement</p></li>  
+        
+        <li><u><b>Severability</b></u>
+            <p align="justify"> &nbsp; If any of the provisions of this Agreement shall be invalid or
+unenforceable, such invalidity or unenforceability shall not invalidate or render unenforceable the
+entire Agreement, but rather the entire Agreement shall be construed as if not containing the
+particular invalid or unenforceable provision or provisions, and the rights and obligations of the
+party shall be construed and enforced accordingly, to effectuate the essential intent and purposes of
+this Agreement.</p></li>
+
+            <li><u><b>Third Parties</b></u>
+            <p align="justify"> &nbsp; This Agreement does not and shall not be deemed to confer upon any
+third party any right to claim damages to bring suit, or other proceeding against either the Company or
+Consultant because of any term contained in this Agreement.</p></li>
+        
+        <li><u><b>Effective Date</b></u>
+            <p align="justify"> &nbsp; The effective date of this Agreement shall be the date first written
+above regardless of the date when the Agreement is actually signed by the parties</p></li>
+        
+        <li><u><b>Notice</b></u>
+            <p align="justify"> &nbsp; Any notice to be given hereunder by either party to the other, shall be in
+                writing and shall be deemed given when sent by certified mail</p></li>
+                
+    </apex:outputPanel>
+    </ul>
+    <ul><li><apex:outputPanel rendered="{!Purchase_Contracts__c.Contract_type__c  == 'Software' }">
+            <li><u><b>Purpose</b></u>
+            <p align="justify"> &nbsp; This agreement sets forth the terms and conditions for the protection of the disclosing party's confidential software and related information.</p></li>
+        
+        <li><u><b>Confidential Information</b></u>
+            <p align="justify"> &nbsp; The recipient agrees to treat the confidential software and related information as confidential and shall not disclose or use it for any purpose other than as specifically authorized by the disclosing party.</p></li>
+        
+        <li><u><b>Exclusions</b></u>
+            <p align="justify"> &nbsp; The recipient shall not be bound by the confidentiality obligation if the information: <b>One Alogorithm Pvt Ltd</b> was already known to the recipient prior to receiving it from the disclosing party, <b> <apex:outputField value="{!Purchase_Contracts__c.Vendor_Name__c}"/> </b> was disclosed to the recipient by a third party who had the right to do so, or Third Party was independently developed by the recipient without use of the confidential software or information.  </p></li>
+        
+        <li><u><b>Term</b></u>
+            <p align="justify"> &nbsp;The term of this agreement shall commence on the date of execution and shall remain in effect for the duration specified in the agreement or until the confidential software and information is no longer confidential.</p></li>
+        
+        <li><u><b>Return of confidential information</b></u>
+            <p align="justify"> &nbsp;Upon termination or expiration of this agreement, the recipient shall promptly return or destroy all confidential software and information in its possession</p></li>
+        
+        <li><u><b>Remedies</b></u>
+            <p align="justify"> &nbsp;The disclosing party shall have the right to seek injunctive relief to enforce the terms of this agreement, in addition to any other remedies available at law or equity.</p></li>
+        
+        <li><u><b>Limitation of liability</b></u>
+            <p align="justify"> &nbsp;In no event shall either party be liable for any indirect, incidental, consequential, special or punitive damages arising out of this agreement.</p></li>
+        
+        <li><u><b>Governing law</b></u>
+            <p align="justify"> &nbsp;This agreement shall be governed by and construed in accordance with the laws of the state in which it was executed</p></li>
+        
+        <li><u><b>Entire agreement</b></u>
+            <p align="justify"> &nbsp;This agreement constitutes the entire understanding between the parties and supersedes all prior negotiations, representations, and agreements, whether written or oral, relating to the subject matter of this agreement.</p></li>
+        
+        <li><u><b>Assignment</b></u>
+            <p align="justify"> &nbsp;The recipient shall not assign this agreement or its obligations hereunder without the prior written consent of the disclosing party.</p></li>
+        
+        <li><u><b>Severability</b></u>
+            <p align="justify"> &nbsp;If any provision of this agreement is held to be unenforceable, the remaining provisions shall remain in full force and effect.</p></li>
+        
+        <li><u><b>No implied rights</b></u>
+            <p align="justify"> &nbsp;Nothing in this agreement shall be construed as granting any rights, by license or otherwise, to the recipient under any patent, trademark, trade secret, or other proprietary right of the disclosing party</p></li>
+        
+        
+                
+              </apex:outputPanel></li>
+    </ul>
+    <ul>
+    <li><u>Notices to the Company shall be addressed to:</u>
+    <p>
+        OneAlgorithm IT Solutions Private Limited,</p><p>
+        Hyderabad,
+        Telangana, 500081
+        </p> 
+        
+    </li>
+    </ul>
+    
+    <p align="justify">
+        <b> &nbsp; IN WITNESS WHEREOF,</b> the parties have caused their duly authorized representatives to sign
+        this <b>PURCHASE CONTRACT AGREEMENT</b> as of the date first written above.
+    </p>
+    
+           
+    <div align="justify"><apex:outputPanel rendered="{!Purchase_Contracts__c.Signature__c  == True }">
+    <apex:image id="stamp" value="{!$Resource.stamp}" width="80" height="80"/>
+    <br/>
+   <!--
+   <p2 align="justify">
+   <apex:image width="80" height="50"  url="/sfc/servlet.shepherd/document/download/069DC000001HxZmYAK" /></p2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p1 align="justify">CEO Signature </p1>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+         <apex:repeat value="{!imageURL}"  var="ConList">
+    
+               <p2 style="text-align:right"> <apex:image url="{!imageURL}" width="100px" height="80px" />  </p2>
+                             
+         </apex:repeat>
+            <p2 align="justify">Vendor Signature </p2>   
+        <apex:outputPanel rendered="{!Purchase_Contracts__c.Signature__c  == True }"> -->
+           
+     <table text-align="center;" border-collapse ="collapse"  width="100%">
+     <tr>
+     
+     <td style="padding-left:15px "><apex:image width="80" height="50"  url="/sfc/servlet.shepherd/document/download/069DC000001HxZmYAK" /></td>
+     
+     
+     <td style="text-align:right; padding-right:10px "><apex:image url="{!imageURL}" width="100px" height="80px" /></td>
+     </tr>
+     </table></apex:outputPanel>
+     
+     <table text-align="center;" border-collapse ="collapse"  width="100%">
+    
+     <tr>
+     
+     <td style="padding-left:15px ">CEO Signature</td>
+     
+     
+     <td style="text-align:right; padding-right:10px ">Vendor Signature</td>
+     </tr>
+     </table>
+      
+             
+       </div>
+
+  
+
+
+
+</apex:page>

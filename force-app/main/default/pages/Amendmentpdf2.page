@@ -1,0 +1,15 @@
+<apex:page standardController="Amendment__c" showHeader="false" standardStylesheets="false" extensions="saveVfPDFCtrl2Amen" >
+  <apex:form >
+        <center>
+            <div><apex:outputPanel rendered="{!Amendment__c.Signature__c  == True }">
+            <apex:commandButton action="{!pdfAction}" value="Save Attachment"/>
+                </apex:outputPanel>
+            </div> 
+        </center>  
+  <center>
+            <apex:iframe height="700px" width="1100px" src="/apex/Amendementpdf?id={!MstrId}"/>
+            </center>
+        
+    </apex:form>
+
+</apex:page>

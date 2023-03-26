@@ -1,0 +1,17 @@
+<apex:page standardController="Purchase_Contracts__c" showHeader="false" standardStylesheets="false" extensions="saveVfPDFCtrl1">
+  <apex:form >
+        <center>
+            <div><apex:outputPanel rendered="{!Purchase_Contracts__c.Signature__c  == True }">
+            <apex:commandButton id="saveAttachmentBtn" action="{!pdfAction}" value="Save Attachment"/>
+                </apex:outputPanel>
+            </div> 
+        </center>  
+  <center>
+            <apex:iframe height="700px" width="1100px" src="/apex/contractpdf?id={!MstrId}"/>
+            </center>
+        
+    </apex:form>
+    
+   
+
+</apex:page>
